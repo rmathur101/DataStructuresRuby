@@ -74,7 +74,7 @@ describe "Tree" do
 			node2 = TreeNode.new(15)
 			node = TreeNode.new(20, TreeNode.new(10, node1, node2), TreeNode.new(30))
 			tree.root = node
-			expect(tree.find_parent(node)).to eq(nil)
+			expect(tree.send(:find_parent, node)).to eq(nil)
 		end
 
 		it "returns the parent node of the node that is passed in" do
@@ -85,8 +85,8 @@ describe "Tree" do
 			node = TreeNode.new(20, node1, TreeNode.new(30))
 			tree.root = node
 
-			expect(tree.find_parent(node2)).to eq(node1)
-			expect(tree.find_parent(node3)).to eq(node1)
+			expect(tree.send(:find_parent, node2)).to eq(node1)
+			expect(tree.send(:find_parent, node3)).to eq(node1)
 		end
 	end
 

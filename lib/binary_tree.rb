@@ -25,6 +25,9 @@ class Tree
 		return find_value_node(self.root, value)
 	end
 
+
+	private
+
 	def find_parent(target)
 		if target == self.root
 			return nil
@@ -39,8 +42,6 @@ class Tree
 		end
 		return node
 	end
-
-	private
 
 	def find_value_node(node, value)
 		if node == nil || node.data == value
