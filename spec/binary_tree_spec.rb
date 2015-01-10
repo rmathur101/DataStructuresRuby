@@ -67,5 +67,24 @@ describe "Tree" do
 		end
 	end
 
+	describe "#find_parent" do
+		it "returns nil if the target node is the root" do
+			tree = Tree.new
+			node1 = TreeNode.new(1)
+			node2 = TreeNode.new(15)
+			node = TreeNode.new(20, TreeNode.new(10, node1, node2), TreeNode.new(30))
+			tree.root = node
+			expect(tree.find_parent(node)).to eq(nil)
+		end
+
+		it "returns the parent node of the node that is passed in" do
+			tree = Tree.new
+			node1 = TreeNode.new(1)
+			node2 = TreeNode.new(15)
+			node = TreeNode.new(20, TreeNode.new(10, node1, node2), TreeNode.new(30))
+			tree.root = node
+		end
+	end
+
 
 end
