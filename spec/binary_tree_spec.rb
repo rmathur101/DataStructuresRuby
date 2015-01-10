@@ -7,34 +7,65 @@ describe "Tree" do
 		expect(tree.root).to eq(nil)
 	end
 
-	it "is defined such that each node has a value less than the left node and greater than or equal to the right node" do
-		tree = Tree.new
-		node = TreeNode.new(20, TreeNode.new(10), TreeNode.new(30))
-		tree.root = node
-
-		expect(tree.root.data).to eq(20)
-		expect(tree.root.left.data).to eq(10)
-		expect(tree.root.right.data).to eq(30)
-	end
-
 	describe "#insert" do
-		context "when value indicates a left node" do
-
-		end
-		it "inserts a node with data that equals such that it is an appropriate left node" do
+		it "inserts a node to the right" do
 			tree = Tree.new
 			node = TreeNode.new(20, TreeNode.new(10), TreeNode.new(30))
 			tree.root = node
-			tree.insert(5)
+			tree.insert(40)
 
 			expect(tree.root.data).to eq(20)
 			expect(tree.root.left.data).to eq(10)
 			expect(tree.root.right.data).to eq(30)
 
-			expect(tree.root.left.left.data).to eq(5)
-			expect(tree.root.left.right).to eq(nil)
-
+			expect(tree.root.right.right.data).to eq(40)
+			expect(tree.root.right.right.right).to eq(nil)
 		end
 
+		it "inserts a node to the left" do
+		  tree = Tree.new
+		  node = TreeNode.new(20, TreeNode.new(10), TreeNode.new(30))
+			tree.root = node
+			tree.insert(1)
+
+			expect(tree.root.data).to eq(20)
+			expect(tree.root.left.data).to eq(10)
+			expect(tree.root.right.data).to eq(30)
+
+			expect(tree.root.left.left.data).to eq(1)
+			expect(tree.root.left.left.left).to eq(nil)
+		end
 	end
+
+	describe "#find_value" do
+		it "returns the node with the value that is passed in" do
+			tree = Tree.new
+			node1 = TreeNode.new(1)
+			node2 = TreeNode.new(15)
+			node = TreeNode.new(20, TreeNode.new(10, node1, node2), TreeNode.new(30))
+			tree.root = node
+			expect(tree.find_value(1)).to eq(node1)
+			expect(tree.find_value(15)).to eq(node2)
+		end
+
+		it "returns nil if the value does not exist" do
+			tree = Tree.new
+			node1 = TreeNode.new(1)
+			node2 = TreeNode.new(15)
+			node = TreeNode.new(20, TreeNode.new(10, node1, node2), TreeNode.new(30))
+			tree.root = node
+			expect(tree.find_value(2)).to eq(nil)
+		end
+
+		it "returns the root node if the value matches" do
+			tree = Tree.new
+			node1 = TreeNode.new(1)
+			node2 = TreeNode.new(15)
+			node = TreeNode.new(20, TreeNode.new(10, node1, node2), TreeNode.new(30))
+			tree.root = node
+			expect(tree.find_value(20)).to eq(node)
+		end
+	end
+
+
 end
