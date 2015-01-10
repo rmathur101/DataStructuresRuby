@@ -29,7 +29,15 @@ class Tree
 		if target == self.root
 			return nil
 		end
-
+		node = self.root
+		while(node.left != target && node.right != target)
+			if node.data > target.data
+				node = node.left
+			elsif node.data <= target.data
+				node = node.right
+			end
+		end
+		return node
 	end
 
 	private
