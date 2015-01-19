@@ -63,6 +63,23 @@ class Tree
 		end
 		return node
 	end
+
+	def find_successor(target)
+		successor = target.right
+		if successor
+			while successor.left
+				successor = successor.left
+			end
+			return successor
+		end
+		begin
+			if successor
+				target = successor
+			end
+			successor = find_parent(target)
+		end while (successor && successor.right == target)
+		return successor
+	end
 end
 
 #NOTES

@@ -90,5 +90,30 @@ describe "Tree" do
 		end
 	end
 
+	describe "#find_successor" do # (if all nodes where ordered by increasing value then it would be the node following the target)
+		it "returns the successor of the target node when there is a right child of the target" do
+			tree = Tree.new
+			node5 = TreeNode.new(5, TreeNode.new(4), TreeNode.new(8, TreeNode.new(6), TreeNode.new(9)))
+			node12 = TreeNode.new(12)
+			node15 = TreeNode.new(15, node12, TreeNode.new(17))
+			node10 = TreeNode.new(10, node5, node15)
+			node20 = TreeNode.new(20, node10, TreeNode.new(30))
+			tree.root = node20
+
+			expect(tree.send(:find_successor, node10)).to eq(node12)
+		end
+
+		it "returns the sucessor of the arget node when there is no right child of the target" do
+			tree = Tree.new
+			node9 = TreeNode.new(9)
+			node5 = TreeNode.new(5, TreeNode.new(4), TreeNode.new(8, TreeNode.new(6), node9))
+			node10 = TreeNode.new(10, node5)
+			node20 = TreeNode.new(20, node10, TreeNode.new(30))
+			tree.root = node20
+
+			expect(tree.send(:find_successor, node10)).to eq(node20)
+		end
+	end
+
 
 end
