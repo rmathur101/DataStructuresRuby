@@ -25,6 +25,35 @@ class Tree
 		return find_value_node(self.root, value)
 	end
 
+	def remove(target)
+		#case where target has two children
+		if target.right && target.left
+			successor = find_successor(target)
+			remove(successor)
+			target.data = successor.data
+			return
+		end
+		#case where target has one child
+		if target.left != nil || target.right != nil
+			if target.left != nil
+				temp = target.left
+			elsif target.right != nil
+				temp = target.right
+			end
+			target.data = temp.data
+			target.left = temp.left
+			target.right = temp.right
+			return
+		end
+		#case where target has no children
+		parent = find_parent(target)
+		if parent.right == target
+			parent.right = nil
+		elsif parent.left == target
+			parent.left = nil
+		end
+		return
+	end
 
 	private
 

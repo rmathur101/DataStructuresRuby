@@ -115,5 +115,31 @@ describe "Tree" do
 		end
 	end
 
+	describe "#remove" do
+	  it "removes the target node when it has left and right child" do
+			tree = Tree.new
+			node5 = TreeNode.new(5, TreeNode.new(4), TreeNode.new(8, TreeNode.new(6), TreeNode.new(9)))
+			node12 = TreeNode.new(12)
+			node15 = TreeNode.new(15, node12, TreeNode.new(17))
+			node10 = TreeNode.new(10, node5, node15)
+			node20 = TreeNode.new(20, node10, TreeNode.new(30))
+			tree.root = node20
+			tree.remove(node10)
 
+			expect(tree.root.left.data).to eq(12)
+			expect(tree.root.left.left.data).to eq(5)
+			expect(tree.root.left.right.data).to eq(15)
+			expect(tree.root.left.right.left).to eq(nil)
+			expect(tree.root.left.right.right.data).to eq(17)
+	  end
+
+	  it "removes the target node when it has only one child" do
+			tree = Tree.new
+			node8 = TreeNode.new(8, TreeNode.new(6))
+			node5 = TreeNode.new(5, TreeNode.new(4), node8)
+			tree.root = node5
+			tree.remove(node8)
+			expect(tree.root.right.data).to eq(6)
+	  end
+	end
 end
