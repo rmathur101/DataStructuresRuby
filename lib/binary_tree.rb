@@ -55,7 +55,31 @@ class Tree
 		return
 	end
 
+	def size
+		return size_node(self.root)
+	end
+
+	def depth
+		return depth_node(self.root)
+	end
+
 	private
+
+	def size_node(node)
+		if node == nil
+			return 0
+		else
+			return 1 + size_node(node.left) + size_node(node.right)
+		end
+	end
+
+	def depth_node(node)
+		if node == nil
+			return 0
+		else
+			return 1 + [depth_node(node.left), depth_node(node.right)].max
+		end
+	end
 
 	def find_parent(target)
 		if target == self.root

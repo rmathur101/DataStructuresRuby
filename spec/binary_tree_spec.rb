@@ -139,7 +139,42 @@ describe "Tree" do
 			node5 = TreeNode.new(5, TreeNode.new(4), node8)
 			tree.root = node5
 			tree.remove(node8)
+
 			expect(tree.root.right.data).to eq(6)
 	  end
 	end
+
+	describe "#size" do
+		it "returns number of nodes in tree" do
+			tree = Tree.new
+			node5 = TreeNode.new(5, TreeNode.new(4), TreeNode.new(8, TreeNode.new(6), TreeNode.new(9)))
+			node12 = TreeNode.new(12)
+			node15 = TreeNode.new(15, node12, TreeNode.new(17))
+			node10 = TreeNode.new(10, node5, node15)
+			node20 = TreeNode.new(20, node10, TreeNode.new(30))
+			tree.root = node20
+
+			expect(tree.size).to eq(11)
+		end
+	end
+
+	describe "#depth" do
+	  it "returns the longest path from a node" do
+			tree = Tree.new
+			node5 = TreeNode.new(5, TreeNode.new(4), TreeNode.new(8, TreeNode.new(6), TreeNode.new(9)))
+			node12 = TreeNode.new(12)
+			node15 = TreeNode.new(15, node12, TreeNode.new(17))
+			node10 = TreeNode.new(10, node5, node15)
+			node20 = TreeNode.new(20, node10, TreeNode.new(30))
+			tree.root = node20
+
+	    expect(tree.depth).to eq(5)
+	  end
+	end
+
+
 end
+
+
+
+
