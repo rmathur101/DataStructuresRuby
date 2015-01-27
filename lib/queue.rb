@@ -18,6 +18,11 @@ class Queue
 	end
 
 	def pop
+		if self.head == self.tail
+			self.head = self.tail = nil
+		else
+			self.head = self.head.next
+		end
 	end
 
 end
