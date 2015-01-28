@@ -43,5 +43,4 @@ def merge(left, right, array)
 end
 
 array = [6, 10, 3, 2, 11, 19, 12, 7, 4, 1]
-
 p merge_sort(array)

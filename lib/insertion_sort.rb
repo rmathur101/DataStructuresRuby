@@ -16,5 +16,5 @@ def insertion_sort(array)
 end
 
 
-array = [1, 9, 6, 5, 2, 4, 10, 34, 2, 56, 3, 5, 4]
+array = [6, 10, 3, 2, 11, 19, 12, 7, 4, 1]
 p insertion_sort(array)
